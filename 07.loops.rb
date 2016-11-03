@@ -1,113 +1,76 @@
-=begin
-We have: 
-    loop do
-    while
-    until
-    for-in
-    .each do
-=end
+# loop
+# for
+# while
+# until
+# each
+# each_oneliner
+# upto
+# upto_oneliner
+#
+#
 
-x = 1
+# ############ #
+# PREPARATIONS #
+# ############ #
 
+# A helpful method for printing numbers from 1 to n
+def print_nums(type, num, limit)
+    print "#{type}: " if num == 1
+    print "#{num}"
+    print ", " if num < limit
+    print "\n" if num == limit
+end
+
+iter_limit = 10
+
+# ################### #
+# HERE COME THE LOOPS #
+# ################### #
+
+# loop
+counter = 0
 loop do
-    x += 1
+    counter += 1
 
-    next unless (x % 2) == 0 # Next is the equivalent of continue in other langs
-    puts x
+    print_nums("loop", counter, iter_limit)
 
-    break if x >= 10
+    break if counter == iter_limit
 end
 
-puts "---"
-
-x = 1
-
-loop do # Exactly the same functionality as bellow; do can NOT be omitted
-    x += 1
-
-    if x % 2 != 0
-        next
-    end
-
-    puts x
-
-    if x >= 10
-        break
-    end
+# for
+counter = 0
+for current in 1..iter_limit do # do is optional
+    print_nums("for", current, iter_limit)
 end
 
-# While
+for current in 1..iter_limit do print_nums("for, one-line", current, iter_limit) end
 
-puts "---"
-
-x = 1
-
-while x <= 10 do # do can be omitted
-    x += 1
-
-    next if x % 2 != 0
-
-    puts x
+# while
+counter = 0 
+while counter < iter_limit do # do is optional
+    counter += 1
+    print_nums("while", counter, iter_limit)
 end
 
-puts "---"
-
-=begin
-Until
-
-while and until do the same thing, one is just "nicer" to read in some instances.
-
-While loop works while something positive is continuing to be positive, 
-whereas until loop continues the loop until something negative occurs.
-
-eg
-
-while 'yes' == keep_going do
-   keep_going = get_answer
+# until
+counter = 0
+until counter >= iter_limit do
+    counter += 1
+    print_nums("until", counter, iter_limit)
 end
 
-vs
-
-until 'stop' == answer do
-   answer = get_answer
-end
-=end
-
-x = 1
-
-until x >= 10 do # do can be omitted
-    x += 1
-
-    next unless x % 2 == 0
-
-    puts x
+# each
+(1..iter_limit).each do |i|
+    print_nums("each", i, iter_limit)
 end
 
-puts "---"
+# each_oneliner
+(1..iter_limit).each{ |i| print_nums("each, one-line", i, iter_limit) }
 
-# For
-
-nums = [1,2,3,4,5]
-
-for number in nums
-    print "#{number}, " unless number == 5
-    puts number if number == 5
+# upto
+1.upto(iter_limit) do |i|
+    print_nums("upto", i, iter_limit)
 end
 
-puts "---"
-
-# Each
-
-groceries = ["banana", "pasta", "potatoes"]
-
-groceries.each do |food|
-    puts "Get some #{food}"
-end
-
-puts "---"
-
-# Range
-
-(1..10).each do |i|
-    puts i if i % 2 == 0
-end
+# upto_oneliner
+1.upto(iter_limit){ |i| print_nums("upto_oneliner", i, iter_limit) }
