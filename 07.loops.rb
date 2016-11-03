@@ -13,7 +13,7 @@
 # PREPARATIONS #
 # ############ #
 
-# A helpful method for printing numbers from 1 to n
+# A helpful method for printing numbers
 def print_nums(type, num, limit)
     print "#{type}: " if num == 1
     print "#{num}"
@@ -31,7 +31,6 @@ iter_limit = 10
 counter = 0
 loop do
     counter += 1
-
     print_nums("loop", counter, iter_limit)
 
     break if counter == iter_limit
