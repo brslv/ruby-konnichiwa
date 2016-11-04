@@ -1,3 +1,5 @@
+#Arrays
+
 =begin
 Some theory: 
 ---
@@ -65,3 +67,43 @@ puts "---"
 puts arr3[-3..-1]
 puts "---"
 puts arr3[-3..1].to_s # empty arr
+
+# ------------------------------------------- #
+# ------------------------------------------- #
+# ------------------------------------------- #
+# ------------------------------------------- #
+# ------------------------------------------- #
+
+# Hashes
+
+=begin
+Some theory:
+
+Hashes can be created like this:
+hsh = {}
+hsh = Hash.new
+hsh = Hash.new("Bobi") # Bobi is a default value if an invalid key has been accessed, otherwise nil
+hsh.default = "Bobi" # sets the default value of the hash, otherwise nil
+
+Two valid ways to fill a hash
+hsh = {"name" => "Bobi", "age" => 25} # using =>
+hsh = {name: "Bobi", age: 25} # equiv: hsh = {"name": "Bobi", "age": 25} or {:name => "Bobi", :age => 25}
+
+Accessing elems
+hsh["name"] # works with the first type of hash
+hsh[:name] # works with the second type of hash
+
+Iterating
+hsh.each_pair do |key, val|
+    ...
+end
+
+hsh.each do |pair|
+    key = pair[0]
+    val = pair[1]
+end
+
+More on Hash: https://ruby-doc.org/core-2.2.0/Hash.html
+=end
+
+
