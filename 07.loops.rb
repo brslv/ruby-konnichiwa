@@ -4,10 +4,9 @@
 # until
 # each
 # each_oneliner
+# each_with_index
 # upto
 # upto_oneliner
-#
-#
 
 # ############ #
 # PREPARATIONS #
@@ -65,6 +64,12 @@ end
 
 # each_oneliner
 (1..iter_limit).each{ |i| print_nums("each, one-line", i, iter_limit) }
+
+# each_with_index
+arr = [1,2,3,4,5,6,7,8,9,10]
+arr.each_with_index do |x, idx|
+    puts "#{idx}: #{x}"
+end
 
 # upto
 1.upto(iter_limit) do |i|
