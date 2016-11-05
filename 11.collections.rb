@@ -106,4 +106,98 @@ end
 More on Hash: https://ruby-doc.org/core-2.2.0/Hash.html
 =end
 
+# ------------------------------------------- #
+# ------------------------------------------- #
+# ------------------------------------------- #
+# ------------------------------------------- #
+# ------------------------------------------- #
 
+# Enumerables
+
+=begin
+Some theory:
+The Enumerable module provides a set of methods to traverse, search, sort and manipulate collections.
+
+.each
+.each_with_index
+.map|collect - for a given collection, perform an operation on each element and return a new collection
+.map! - the same as map, but act inplace
+.select - leave the elements of a collection, that resolve to true for a given condition (like filter in JS); returns new collection
+.reject - oposite of select
+.inject - same as reduce in JS
+.take(n) - take the first n elems
+.first - ret the first elem, or the first n elems if .first(n)
+.any? - applies the block to all elems and if at least one returns true - the method returns true
+.all? - same as any, but checks if all elems resolve to true, based on the given cond
+.none?
+.find|detect - find the first that mets the cond in the block
+.grep - take only the ones, that match a regex
+.partition - returns two arrays, the first containing the elements of enum for which the block evaluates to true, the second containing the rest
+
+Trick: if you need the index of each element, when using map, you can chain it like this
+some_collection.each_with_index.map do |el, idx|
+    ... # el is the current elem, idx is the index
+end
+=end
+
+# map
+puts "---"
+
+coll = ["a", "b", "c", "d", "e"].map do |el|
+    el + "!"
+end
+
+puts coll.join(', ')
+
+# map!
+puts "---"
+coll = [1,2,3,4,5]
+puts coll.map!{ |num| num * -1 }.join("\n")
+
+# chained each_with_index & map
+puts "---"
+coll = ["a", "b", "c", "d", "e"].each_with_index.map do |lttr, idx|
+    "The letter #{lttr} is on the #{idx + 1} position in the alphabet."
+end
+puts coll.join("\n")
+
+# select
+puts [1, "a", 19.99, "John", "z"].select{ |el| el.class == String }.join("\n") # prints only the strings
+
+# inject
+puts "---"
+sum = [2, 5, 10].inject(0){ |sum, num| sum += num } # 0 is the initial val of sum
+puts "The sum is: " + sum.to_s
+
+# take
+puts "---"
+puts [1,2,3,4,5,6,7,8,9,10].take(3).to_s # [1,2,3]
+
+# first
+puts "---"
+puts [1,2,3,4,5,6,7,8,9,10].first(3).to_s # [1,2,3]
+
+# any?
+puts "---"
+puts [1,2,3,4,5,6,7].any?{ |n| n.odd? }
+# same can be written like this
+puts [1,2,3,4,5,6,7].any?(&:odd?)
+
+# all?
+puts "---"
+puts [1,2,3,4,5,6,7].all? { |n| n.odd? }
+puts [1,2,3,4,5,6,7].all?(&:odd?)
+puts [1,2,3,4,5,6,7].all? { |n| n.class == Fixnum }
+
+# grep
+puts "---"
+
+pattern = /B/
+names = ["Borislav", "Jane", "bojana"]
+puts names.grep(pattern).to_s
+
+# partition
+puts "---"
+nums = [1,2,3,4,5,6,7,8,9,10]
+
+puts nums.partition{ |num| num.even? }.to_s # the first el is evens, the second - odds

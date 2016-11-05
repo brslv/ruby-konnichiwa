@@ -138,3 +138,47 @@ Also, you may find the hash's fetch method useful. It takes two arguments: 1) a 
 
     str = "Some random string just to warm up"
     puts extract_freq(str).sort_by{ |k, v| v.to_f }.reverse.to_h # sorted by freq from high to low
+
+=begin
+Using map (and one other method), create an array that lists the numbers 0 to -100 in descending order. Without typing all the numbers manually.
+=end
+    puts "---"
+
+    puts 100.times.map{ |num| num * -1 }.to_s
+
+=begin
+Using the array ['cat', 'dog', 'pig', 'goat'], create a new array in which every second element is uppercased and backwards.
+=end
+    puts "---"
+    ark = ["cat", "dog", "pig", "goat"]
+
+    modified = ark.each_with_index.map do |el, idx| 
+        idx.odd? ? el.upcase.reverse : el
+    end
+
+    puts modified.to_s
+
+=begin
+Create an array of the Fibonacci sequence with inject.
+=end
+    puts "---"
+
+    puts 18.times.inject([0, 1]) { |a, idx| a << a[-2] + a[-1] }.to_s
+
+=begin
+Use inject to convert an array into a hash
+
+Given a two-dimensional array (i.e. an array of two-element arrays), convert it into a hash in the keys and values are the first and second elements, respectively, of each sub-array.
+
+[['dog', 'Fido'], ['cat', 'Whiskers'], ['fish', 'Fluffy']]
+=end
+    puts "---"
+
+    arr = [['dog', 'Fido'], ['cat', 'Whiskers'], ['fish', 'Fluffy']]
+
+    hsh = arr.inject({}) do |hsh, el| 
+        hsh[el[0]] = el[1]
+        hsh
+    end
+
+    puts hsh
