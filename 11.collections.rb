@@ -3,12 +3,27 @@
 =begin
 Some theory: 
 ---
+Arrays are untyped and mutable.
+Array literal: %w or %W
+
+Some useful methods:
+.new(initial_val)
 .push - pushes an elem to the end of the array
 .pop - pops out the last elem of the arr - stack like
+.unshift - prepend value
+.shift - get the first value
 .join
+.concat(arr)
+.size
+.count(something_we_look_for)
+.include? - check if a value exists in an array
 
-[1,2] + [3, 4] == [1,2,3, 4] -> equiv: [1,2].push(3, 4)
+Array.new(3) { |i| i + 1 } -> [1,2,3]
+a = %w[this is some array with literal] -> ["this", "is", "some", "array", "with", "literal"]
+[1,2] + [3, 4] == [1,2,3, 4] -> equiv: [1,2].push(3, 4) or [1,2].concat([3,4])
 [1,2] << 3 == [1,2,3] -> pushing to an array, using << notation:
+[1,2,3,4] - [1,2,5,6] == [3,4]  -> gets the unique values from the first arr
+[0] * 3 == [0, 0, 0]
 
 Sorting:
 ---
@@ -26,6 +41,21 @@ Partial arrays with ranges:
 ["a", "b", "c", "d", "e"][1..3] -> ["b", "c", "d"] -> from-to INDEX (notice!)
 ["a", "b", "c", "d", "e"][-2..-1] -> ["d", "e"] -> negative indices go backwards
 ["a", "b", "c", "d", "e"][3..-1] -> ["d", "e"]
+["a", "b", "c", "d", "e"][0, 3] -> ["a", "b", "c"] -> from-to INDEX (notice!)
+
+Insertion, deletion:
+---
+b = [?a, ?b, ?c] -> same as ["a", "b", "c"]
+b[0,0] = [1, 2] -> insert @ the beginning - results in [1,2,?a,?b,?c]
+b[0,2] = [] -> delete those elements - results in [?a, ?b, ?c] again
+
+| &
+---
+a = [1,1,2,2,3,3,4]
+b = [5,5,4,4,3,3,2]
+a | b # [1, 2, 3, 4, 5]: duplicates are removed
+b | a # [5, 4, 3, 2, 1]: elements are the same, but order is different a&b #[2,3,4]
+b & a #[4,3,2]
 =end
 
 # Adding
@@ -33,6 +63,9 @@ arr = ["Some", "random", "words"]
 arr.push("new", "stuff")
 arr << 15
 arr = arr + ["nice"]
+arr.concat([100,200])
+arr[0,0] = "This becomes first"
+arr[1,2] = [] # Delete "Some", "random"
 puts arr
 
 # Sorting
@@ -51,22 +84,26 @@ puts arr2
 puts "---"
 
 arr3 = ["John", "Bobby", "Jane", "Sue", "Ann"]
-puts arr3.slice(0, 0).to_s # empty arr (notice the difference when using ranges)
+p arr3.slice(0, 0).to_s # empty arr (notice the difference when using ranges)
 puts "---"
-puts arr3.slice(1, 2) # from index 1, take 2 elems
+p arr3.slice(1, 2) # from index 1, take 2 elems
 puts "---"
-puts arr3.slice(-2, 2) # from the elem, that's on the second position from back to front, take two elems
+p arr3.slice(-2, 2) # from the elem, that's on the second position from back to front, take two elems
 puts "---"
 
 # Chunking, using ranges
 # Note that with ranges the two indicators are indices. In the .slice() the last indicator is "how many elems to chunk from the starting index". That's the difference.
-puts arr3[0..-1] # The whole arr
+p arr3[0..arr3.length - 3] # John Bobby Jane
 puts "---"
-puts arr3[0..1]
+p arr3[0...arr3.length - 3] # John Bobby
 puts "---"
-puts arr3[-3..-1]
+p arr3[0..-1] # The whole arr
 puts "---"
-puts arr3[-3..1].to_s # empty arr
+p arr3[0..1]
+puts "---"
+p arr3[-3..-1]
+puts "---"
+p arr3[-3..1].to_s # empty arr
 
 # ------------------------------------------- #
 # ------------------------------------------- #
