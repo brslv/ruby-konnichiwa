@@ -17,16 +17,17 @@ module Introducible
     #
     # So the general rule - if you want to use a getter
     #   to get the value of @something - use "self.something".
+    #   Notice that self can be omitted (as with the name bellow).
     #
     # If you want to get the exact instance variable @something,
     #   use "@something".
-    "My name is #{self.name} and I'm #{@age} years old."
+    "My name is #{name} and I'm #{@age} years old."
   end
 end
 
 class User
   # Uses a module for introducing.
-  include Introducable
+  include Introducible
 
   # Accssors are a fast way to generate "behind the scenes"
   #   methods for accessing instance variables of a class.
